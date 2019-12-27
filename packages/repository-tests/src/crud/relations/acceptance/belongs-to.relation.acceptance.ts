@@ -93,7 +93,7 @@ export function belongsToRelationAcceptance(
       expect(result).to.deepEqual(shipment);
     });
 
-    it('returns an empty array if the source instance does not have the foreign key', async () => {
+    it('returns undefined if the source instance does not have the foreign key', async () => {
       await shipmentRepo.create({
         name: 'Tuesday morning shipment',
       });
@@ -102,7 +102,7 @@ export function belongsToRelationAcceptance(
         description: 'Order that is shipped Tuesday morning',
       });
       const result = await orderRepo.shipment(order.id);
-      expect(result).to.deepEqual([]);
+      expect(result).to.be.undefined();
     });
 
     it('throws EntityNotFound error when the related model does not exist', async () => {
